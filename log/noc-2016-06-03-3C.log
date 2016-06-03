@@ -1,3 +1,0 @@
-[I] 2016-06-03 14:06:04.215 (0x0000): RuchusMonitorService::loadConfiguration ok 
-[E] 2016-06-03 14:06:04.216 (0x0001): log monitor config regex error Error in regular expression 
-[I] 2016-06-03 14:06:27.490 (0x0000): RuchusMonitorService::uninitialize 

@@ -1,4 +1,0 @@
-[I] 2016-06-03 10:04:19.688 (0x0000): RuchusMonitorService::loadConfiguration ok 
-[I] 2016-06-03 10:04:19.701 (0x0001): log monitor init ok 4 
-[E] 2016-06-03 10:04:19.701 (0x0001): log monitor get config error Not found 
-[I] 2016-06-03 10:04:29.286 (0x0000): RuchusMonitorService::uninitialize 

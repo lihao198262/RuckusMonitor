@@ -1,6 +1,0 @@
-[I] 2016-06-03 09:43:58.358 (0x0000): RuchusMonitorService::loadConfiguration ok 
-[I] 2016-06-03 09:43:58.372 (0x0001): fd 4 
-[I] 2016-06-03 09:43:58.373 (0x0001): minitor file "/var/log/message" 
-[I] 2016-06-03 09:43:58.373 (0x0001): wd -1 
-[I] 2016-06-03 09:44:01.095 (0x0001): n 0 
-[I] 2016-06-03 09:44:01.095 (0x0000): RuchusMonitorService::uninitialize 

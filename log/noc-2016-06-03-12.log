@@ -1,4 +1,0 @@
-[I] 2016-06-03 10:30:18.815 (0x0000): RuchusMonitorService::loadConfiguration ok 
-[I] 2016-06-03 10:30:18.821 (0x0001): log monitor init ok 6 
-[I] 2016-06-03 10:30:18.821 (0x0001): log minitor file /var/log/messages 
-[I] 2016-06-03 10:30:31.190 (0x0001): log monitor file size [ERRFMT] 

@@ -1,4 +1,0 @@
-[I] 2016-06-03 10:00:17.360 (0x0000): RuchusMonitorService::loadConfiguration ok 
-[I] 2016-06-03 10:00:17.362 (0x0001): log monitor init ok 4 
-[E] 2016-06-03 10:00:17.362 (0x0001): log monitor get config error [ERRFMT] 
-[I] 2016-06-03 10:00:24.624 (0x0000): RuchusMonitorService::uninitialize 
