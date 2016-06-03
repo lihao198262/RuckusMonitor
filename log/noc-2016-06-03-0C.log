@@ -1,0 +1,3 @@
+[I] 2016-06-03 09:57:28.319 (0x0000): RuchusMonitorService::loadConfiguration ok 
+[I] 2016-06-03 09:57:28.325 (0x0001): log monitor init ok 4 
+[I] 2016-06-03 09:57:47.454 (0x0000): RuchusMonitorService::uninitialize 

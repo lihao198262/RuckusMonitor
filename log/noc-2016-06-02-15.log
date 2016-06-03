@@ -1,0 +1,14 @@
+[I] 2016-06-02 18:24:01.221 (0x0000): RuchusMonitorService::loadConfiguration ok 
+[I] 2016-06-02 18:24:01.228 (0x0001): fd 4 
+[I] 2016-06-02 18:24:01.228 (0x0001): wd 1 
+[I] 2016-06-02 18:24:21.592 (0x0001): RuchusLogMonitor::handler  1 
+[I] 2016-06-02 18:24:21.594 (0x0001): RuchusLogMonitor::handler  1 
+[I] 2016-06-02 18:24:21.594 (0x0001): RuchusLogMonitor::handler  1 
+[I] 2016-06-02 18:24:31.135 (0x0001): RuchusLogMonitor::handler  1 
+[I] 2016-06-02 18:24:42.991 (0x0001): RuchusLogMonitor::handler  1 
+[I] 2016-06-02 18:24:44.487 (0x0001): RuchusLogMonitor::handler  1 
+[I] 2016-06-02 18:25:04.623 (0x0001): RuchusLogMonitor::handler  1 
+[I] 2016-06-02 18:25:16.153 (0x0001): RuchusLogMonitor::handler  1 
+[I] 2016-06-02 18:25:16.154 (0x0001): RuchusLogMonitor::handler  1 
+[I] 2016-06-02 18:49:16.731 (0x0001): n 9 
+[I] 2016-06-02 18:49:16.731 (0x0000): RuchusMonitorService::uninitialize 

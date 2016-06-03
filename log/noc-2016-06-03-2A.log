@@ -1,0 +1,8 @@
+[I] 2016-06-03 12:05:10.630 (0x0000): RuchusMonitorService::loadConfiguration ok 
+[I] 2016-06-03 12:05:10.632 (0x0001): log monitor init ok 4 
+[I] 2016-06-03 12:05:10.632 (0x0001): log minitor file /var/log/messages 
+[I] 2016-06-03 12:05:10.632 (0x0001): log monitor file size 1650 
+[I] 2016-06-03 12:05:10.632 (0x0001): log monitor add watch id 1 
+[I] 2016-06-03 12:05:14.686 (0x0001): IN_MODIFY 
+[D] 2016-06-03 12:05:14.687 (0x0001): log monitor get line:Jun  3 12:05:14 WiFiGo-Rad root: aaab 
+[I] 2016-06-03 12:05:22.132 (0x0000): RuchusMonitorService::uninitialize 

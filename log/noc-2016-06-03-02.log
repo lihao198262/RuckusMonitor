@@ -1,0 +1,6 @@
+[I] 2016-06-03 09:40:39.446 (0x0000): RuchusMonitorService::loadConfiguration ok 
+[I] 2016-06-03 09:40:39.453 (0x0001): fd 4 
+[I] 2016-06-03 09:40:39.454 (0x0001): wd [ERRFMT] 
+[I] 2016-06-03 09:40:39.454 (0x0001): wd -1 
+[I] 2016-06-03 09:42:19.893 (0x0001): n 0 
+[I] 2016-06-03 09:42:19.893 (0x0000): RuchusMonitorService::uninitialize 

@@ -1,0 +1,24 @@
+[I] 2016-06-03 11:33:05.119 (0x0000): RuchusMonitorService::loadConfiguration ok 
+[I] 2016-06-03 11:33:05.126 (0x0001): log monitor init ok 4 
+[I] 2016-06-03 11:33:05.126 (0x0001): log minitor file /var/log/messages 
+[I] 2016-06-03 11:33:05.126 (0x0001): log monitor file size 1080 
+[I] 2016-06-03 11:33:05.126 (0x0001): log monitor add watch id 1 
+[I] 2016-06-03 11:33:08.975 (0x0001): IN_MODIFY 
+[D] 2016-06-03 11:33:08.975 (0x0001): log monitor get line:Jun  3 11:33:08 WiFiGo-Rad root: aaab 
+[D] 2016-06-03 11:33:09.088 (0x0001): log monitor match 0 
+[D] 2016-06-03 11:33:09.089 (0x0001): log monitor send 37 
+[I] 2016-06-03 11:33:09.089 (0x0001): IN_OPEN 
+[I] 2016-06-03 11:33:18.176 (0x0001): IN_MODIFY 
+[D] 2016-06-03 11:33:18.176 (0x0001): log monitor get line:Jun  3 11:33:18 WiFiGo-Rad root: User 
+[D] 2016-06-03 11:33:18.176 (0x0001): log monitor match 0 
+[D] 2016-06-03 11:33:18.176 (0x0001): log monitor send 37 
+[I] 2016-06-03 11:33:18.177 (0x0001): IN_OPEN 
+[I] 2016-06-03 11:33:18.177 (0x0001): IN_ACCESS 
+[I] 2016-06-03 11:33:22.278 (0x0001): IN_MODIFY 
+[D] 2016-06-03 11:33:22.278 (0x0001): log monitor get line:Jun  3 11:33:22 WiFiGo-Rad root: User 
+[D] 2016-06-03 11:33:22.278 (0x0001): log monitor match 0 
+[D] 2016-06-03 11:33:22.278 (0x0001): log monitor send 37 
+[I] 2016-06-03 11:33:22.278 (0x0001): IN_OPEN 
+[I] 2016-06-03 11:33:22.279 (0x0001): IN_ACCESS 
+[I] 2016-06-03 11:33:32.864 (0x0001): log monitor run close after handle 8 
+[I] 2016-06-03 11:33:32.864 (0x0000): RuchusMonitorService::uninitialize 

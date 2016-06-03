@@ -1,0 +1,7 @@
+[I] 2016-06-03 10:30:49.685 (0x0000): RuchusMonitorService::loadConfiguration ok 
+[I] 2016-06-03 10:30:49.689 (0x0001): log monitor init ok 6 
+[I] 2016-06-03 10:30:49.689 (0x0001): log minitor file /var/log/messages 
+[I] 2016-06-03 10:30:52.405 (0x0001): log monitor file size [ERRFMT] 
+[I] 2016-06-03 10:30:52.406 (0x0001): log monitor add watch id 1 
+[I] 2016-06-03 10:30:55.664 (0x0001): log monitor run close after handle 0 
+[I] 2016-06-03 10:30:55.664 (0x0000): RuchusMonitorService::uninitialize 

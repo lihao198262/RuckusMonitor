@@ -1,0 +1,12 @@
+[I] 2016-06-03 09:46:39.021 (0x0000): RuchusMonitorService::loadConfiguration ok 
+[I] 2016-06-03 09:47:04.738 (0x0001): fd 6 
+[I] 2016-06-03 09:47:04.738 (0x0001): minitor file /var/log/messages 
+[I] 2016-06-03 09:47:10.406 (0x0001): wd 1 
+[I] 2016-06-03 09:47:20.127 (0x0001): RuchusLogMonitor::handler  1 
+[I] 2016-06-03 09:47:20.128 (0x0001): RuchusLogMonitor::handler  1 
+[I] 2016-06-03 09:47:20.128 (0x0001): RuchusLogMonitor::handler  1 
+[I] 2016-06-03 09:47:39.832 (0x0001): RuchusLogMonitor::handler  1 
+[I] 2016-06-03 09:47:39.832 (0x0001): RuchusLogMonitor::handler  1 
+[I] 2016-06-03 09:47:39.832 (0x0001): RuchusLogMonitor::handler  1 
+[I] 2016-06-03 09:47:51.491 (0x0001): n 6 
+[I] 2016-06-03 09:47:51.491 (0x0000): RuchusMonitorService::uninitialize 

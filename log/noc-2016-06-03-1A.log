@@ -1,0 +1,10 @@
+[I] 2016-06-03 10:48:28.952 (0x0000): RuchusMonitorService::loadConfiguration ok 
+[I] 2016-06-03 10:48:28.974 (0x0001): log monitor init ok 4 
+[I] 2016-06-03 10:48:28.975 (0x0001): log minitor file /var/log/messages 
+[I] 2016-06-03 10:48:28.975 (0x0001): log monitor file size 405 
+[I] 2016-06-03 10:48:28.975 (0x0001): log monitor add watch id 1 
+[I] 2016-06-03 10:48:32.968 (0x0001): IN_CLOSE_NOWRITE 
+[I] 2016-06-03 10:48:45.656 (0x0001): IN_MODIFY 
+[I] 2016-06-03 10:48:45.656 (0x0001): IN_ACCESS 
+[I] 2016-06-03 10:51:23.350 (0x0001): log monitor run close after handle 3 
+[I] 2016-06-03 10:51:23.350 (0x0000): RuchusMonitorService::uninitialize 
