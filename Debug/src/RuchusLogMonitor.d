@@ -728,7 +728,11 @@ src/RuchusLogMonitor.d src/RuchusLogMonitor.o: \
  /root/poco/include/Poco/FileStream_POSIX.h \
  /root/poco/include/Poco/BufferedBidirectionalStreamBuf.h \
  /root/poco/include/Poco/BufferAllocator.h \
- /root/poco/include/Poco/StreamUtil.h
+ /root/poco/include/Poco/StreamUtil.h /root/poco/include/Poco/DateTime.h \
+ /root/poco/include/Poco/DateTimeParser.h \
+ /root/poco/include/Poco/DateTimeFormat.h \
+ /root/poco/include/Poco/DateTimeFormatter.h \
+ /root/poco/include/Poco/LocalDateTime.h
 
 ../src/RuchusLogMonitor.h:
 
@@ -2221,3 +2225,13 @@ src/RuchusLogMonitor.d src/RuchusLogMonitor.o: \
 /root/poco/include/Poco/BufferAllocator.h:
 
 /root/poco/include/Poco/StreamUtil.h:
+
+/root/poco/include/Poco/DateTime.h:
+
+/root/poco/include/Poco/DateTimeParser.h:
+
+/root/poco/include/Poco/DateTimeFormat.h:
+
+/root/poco/include/Poco/DateTimeFormatter.h:
+
+/root/poco/include/Poco/LocalDateTime.h:

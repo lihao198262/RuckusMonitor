@@ -23,6 +23,8 @@ public:
 
 	void run();
 
+	void test();
+
 	void stop();
 
 protected:
@@ -46,6 +48,14 @@ private:
 	Poco::File::FileSize begin_size;
 
 	Poco::SharedPtr<Poco::RegularExpression> re;
+
+	Poco::SharedPtr<Poco::RegularExpression> reDateTime;
+
+	Poco::SharedPtr<Poco::RegularExpression> reUserMac;
+
+	Poco::SharedPtr<Poco::RegularExpression> reAPMac;
+
+	Poco::SharedPtr<Poco::RegularExpression> reMac;
 
 	Poco::Net::DatagramSocket s;
 
