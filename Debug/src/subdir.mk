@@ -6,6 +6,7 @@
 CPP_SRCS += \
 ../src/RuchusLogMonitor.cpp \
 ../src/RuchusMonitor.cpp \
+../src/RuckusDeviceInfoSender.cpp \
 ../src/SmartacFileChannel.cpp \
 ../src/SmartacFileChannelFactory.cpp \
 ../src/SmartacFormatterFactory.cpp \
@@ -14,6 +15,7 @@ CPP_SRCS += \
 OBJS += \
 ./src/RuchusLogMonitor.o \
 ./src/RuchusMonitor.o \
+./src/RuckusDeviceInfoSender.o \
 ./src/SmartacFileChannel.o \
 ./src/SmartacFileChannelFactory.o \
 ./src/SmartacFormatterFactory.o \
@@ -22,6 +24,7 @@ OBJS += \
 CPP_DEPS += \
 ./src/RuchusLogMonitor.d \
 ./src/RuchusMonitor.d \
+./src/RuckusDeviceInfoSender.d \
 ./src/SmartacFileChannel.d \
 ./src/SmartacFileChannelFactory.d \
 ./src/SmartacFormatterFactory.d \

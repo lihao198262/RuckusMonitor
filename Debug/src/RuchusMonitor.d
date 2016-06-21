@@ -662,8 +662,10 @@ src/RuchusMonitor.d src/RuchusMonitor.o: ../src/RuchusMonitor.cpp \
  /root/poco/include/Poco/Net/SocketAddressImpl.h \
  /root/poco/include/Poco/Net/IPAddress.h \
  /root/poco/include/Poco/Net/IPAddressImpl.h \
- ../src/SmartacFileChannelFactory.h ../src/SmartacFileChannel.h \
- /root/poco/include/Poco/LogFile.h /root/poco/include/Poco/LogFile_STD.h \
+ ../src/RuckusDeviceInfoSender.h /root/poco/include/Poco/Timer.h \
+ /root/poco/include/Poco/Clock.h ../src/SmartacFileChannelFactory.h \
+ ../src/SmartacFileChannel.h /root/poco/include/Poco/LogFile.h \
+ /root/poco/include/Poco/LogFile_STD.h \
  /root/poco/include/Poco/FileStream.h \
  /root/poco/include/Poco/FileStream_POSIX.h \
  /root/poco/include/Poco/BufferedBidirectionalStreamBuf.h \
@@ -2037,6 +2039,12 @@ src/RuchusMonitor.d src/RuchusMonitor.o: ../src/RuchusMonitor.cpp \
 /root/poco/include/Poco/Net/IPAddress.h:
 
 /root/poco/include/Poco/Net/IPAddressImpl.h:
+
+../src/RuckusDeviceInfoSender.h:
+
+/root/poco/include/Poco/Timer.h:
+
+/root/poco/include/Poco/Clock.h:
 
 ../src/SmartacFileChannelFactory.h:
 

@@ -10,6 +10,7 @@
 
 #include <Poco/Util/ServerApplication.h>
 #include "RuchusLogMonitor.h"
+#include "RuckusDeviceInfoSender.h"
 
 class RuchusMonitorService: public Poco::Util::ServerApplication {
 
@@ -26,6 +27,7 @@ protected:
 
 private:
 	RuchusLogMonitor mLogMonitor;
+	RuckusDeviceInfoSender mDeviceInfoSender;
 };
 
 #endif /* RUCHUSMONITOR_H_ */

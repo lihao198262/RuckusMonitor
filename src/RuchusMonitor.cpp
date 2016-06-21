@@ -40,6 +40,8 @@ void RuchusMonitorService::initialize(Application & self) {
 			"RuchusMonitorService::loadConfiguration ok");
 
 	Poco::ThreadPool::defaultPool().start(mLogMonitor);
+
+	mDeviceInfoSender.initial();
 }
 
 void RuchusMonitorService::uninitialize() {
