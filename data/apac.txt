@@ -1,0 +1,3 @@
+108|R700-BJOffice|84:18:3a:09:f8:f0|Beijingoffice|39.5614|116.2652|ruckus_access;video54;test
+108|7982bj|c0:8a:de:21:27:30|Beijingoffice|39.5614|116.2652|ruckus_access;video54;test
+108|7055bj|24:c9:a1:2a:f8:f0|Beijingoffice|39.5614|116.2652|ruckus_access;video54;test
