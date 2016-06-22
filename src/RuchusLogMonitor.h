@@ -32,6 +32,8 @@ protected:
 
 	void sender();
 
+	bool initial();
+
 private:
 	boost::asio::io_service ios;
 
