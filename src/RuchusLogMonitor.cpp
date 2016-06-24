@@ -15,8 +15,10 @@
 #include <Poco/DateTimeParser.h>
 #include <Poco/DateTimeFormat.h>
 #include <Poco/DateTimeFormatter.h>
+#include <errno.h>
 
-RuchusLogMonitor::RuchusLogMonitor() {
+RuchusLogMonitor::RuchusLogMonitor() :
+	fd(-1), wd(-1) {
 }
 
 RuchusLogMonitor::~RuchusLogMonitor() {
@@ -40,6 +42,60 @@ void RuchusLogMonitor::stop() {
 }
 
 void RuchusLogMonitor::run() {
+	try {
+		re = new Poco::RegularExpression(Poco::Util::Application::instance().config().getString("fliter_regex"));
+	} catch (Poco::Exception &e) {
+		Poco::Util::Application::instance().logger().error("log monitor config regex error %s", std::string(e.what()));
+		return;
+	}
+
+	try {
+		reDateTime = new Poco::RegularExpression(Poco::Util::Application::instance().config().getString("date_regex"));
+	} catch (Poco::Exception &e) {
+		Poco::Util::Application::instance().logger().error("log monitor config date_regex error %s", std::string(e.what()));
+		return;
+	}
+
+	try {
+		reUserMac = new Poco::RegularExpression(Poco::Util::Application::instance().config().getString("user_mac_regex"));
+	} catch (Poco::Exception &e) {
+		Poco::Util::Application::instance().logger().error("log monitor config user_mac_regex error %s", std::string(e.what()));
+		return;
+	}
+
+	try {
+		reAPMac = new Poco::RegularExpression(Poco::Util::Application::instance().config().getString("ap_mac_regex"));
+	} catch (Poco::Exception &e) {
+		Poco::Util::Application::instance().logger().error("log monitor config ap_mac_regex error %s", std::string(e.what()));
+		return;
+	}
+
+	try {
+		reMac = new Poco::RegularExpression(Poco::Util::Application::instance().config().getString("mac_regex"));
+	} catch (Poco::Exception &e) {
+		Poco::Util::Application::instance().logger().error("log monitor config mac_regex error %s", std::string(e.what()));
+		return;
+	}
+
+	try {
+		address = new Poco::Net::SocketAddress(Poco::Util::Application::instance().config().getString("dest_ip"), Poco::Util::Application::instance().config().getUInt("dest_port"));
+	} catch (Poco::Exception &e) {
+		Poco::Util::Application::instance().logger().error("log monitor config regex error %s", std::string(e.what()));
+		return;
+	}
+
+	fd = inotify_init();
+
+	if (fd == -1) {
+		Poco::Util::Application::instance().logger().error("log monitor init fail %s", std::string(strerror(errno)));
+		return;
+	}
+
+	Poco::Util::Application::instance().logger().information("log monitor init ok %d", fd);
+
+	stream_descriptor = new boost::asio::posix::stream_descriptor(ios, fd);
+
+	stream_descriptor->async_read_some(boost::asio::buffer(databuf, 128), boost::bind(&RuchusLogMonitor::handler, this));
 
 	while (initial() == false)
 		sleep(1);
@@ -66,8 +122,8 @@ void RuchusLogMonitor::handler() {
 		Poco::Util::Application::instance().logger().information("IN_ATTRIB");
 		break;
 	case IN_CLOSE_WRITE:
-		while (initial() == false)
-			sleep(1);
+		Poco::Util::Application::instance().logger().information("IN_CLOSE_WRITE");
+		sender();
 		break;
 	case IN_CLOSE_NOWRITE:
 		Poco::Util::Application::instance().logger().information("IN_CLOSE_NOWRITE");
@@ -168,21 +224,42 @@ void RuchusLogMonitor::sender() {
 				continue;
 			}
 
-			std::vector<std::string> vMac;
-			Poco::RegularExpression::Match m2;
-			b = reMac->match(line, 0, m2);
-
-			while (b) {
-				vMac.push_back(line.substr(m2.offset, m2.length));
-				b = reMac->match(line, m2.offset + m2.length, m2);
-			}
-
-			if (vMac.size() != 2) {
-				Poco::Util::Application::instance().logger().error("log monitor find mac error:%z--->%s", vMac.size(), line);
+			Poco::RegularExpression::Match m3;
+			b = reUserMac->match(line, 0, m3);
+			if (b == 0) {
+				Poco::Util::Application::instance().logger().error("log monitor user mac paser error--->%s", line);
 				continue;
 			}
 
-			std::string sendline = Poco::format("108|%d/%s|%s|%s", year, Poco::DateTimeFormatter::format(dt, "%n/%e %H:%M:%S"), vMac[0], vMac[1]);
+			Poco::RegularExpression::Match m4;
+			b = reAPMac->match(line, 0, m4);
+			if (b == 0) {
+				Poco::Util::Application::instance().logger().error("log monitor ap mac paser error--->%s", line);
+				continue;
+			}
+
+			std::string sUserTemp = line.substr(m3.offset, m3.length);
+
+			Poco::RegularExpression::Match m5;
+			b = reMac->match(sUserTemp, 0, m5);
+
+			if (b == 0) {
+				Poco::Util::Application::instance().logger().error("log monitor user mac paser error--->%s", line);
+				continue;
+			}
+
+			std::string sAPTemp = line.substr(m4.offset, m4.length);
+
+			Poco::RegularExpression::Match m6;
+			b = reMac->match(sAPTemp, 0, m6);
+
+			if (b == 0) {
+				Poco::Util::Application::instance().logger().error("log monitor ap mac paser error--->%s", line);
+				continue;
+			}
+
+			std::string sendline = Poco::format("108|%d/%s|%s|%s", year, Poco::DateTimeFormatter::format(dt, "%n/%e %H:%M:%S"), sUserTemp.substr(m5.offset, m5.length), sAPTemp.substr(m6.offset,
+					m6.length));
 
 			int send_len = s.sendTo(sendline.c_str(), sendline.length(), *address);
 			Poco::Util::Application::instance().logger().information("log monitor send->%s  %d", sendline, send_len);
@@ -197,78 +274,16 @@ void RuchusLogMonitor::sender() {
 
 bool RuchusLogMonitor::initial() {
 
-	try {
-		re = new Poco::RegularExpression(Poco::Util::Application::instance().config().getString("fliter_regex"));
-	} catch (Poco::Exception &e) {
-		Poco::Util::Application::instance().logger().error("log monitor config regex error %s", std::string(e.what()));
-		return false;
+	if (wd != -1) {
+		inotify_rm_watch(fd, wd);
+		wd = -1;
 	}
-
-	try {
-		reDateTime = new Poco::RegularExpression(Poco::Util::Application::instance().config().getString("date_regex"));
-	} catch (Poco::Exception &e) {
-		Poco::Util::Application::instance().logger().error("log monitor config date_regex error %s", std::string(e.what()));
-		return false;
-	}
-
-	try {
-		reUserMac = new Poco::RegularExpression(Poco::Util::Application::instance().config().getString("user_mac_regex"));
-	} catch (Poco::Exception &e) {
-		Poco::Util::Application::instance().logger().error("log monitor config user_mac_regex error %s", std::string(e.what()));
-		return false;
-	}
-
-	try {
-		reAPMac = new Poco::RegularExpression(Poco::Util::Application::instance().config().getString("ap_mac_regex"));
-	} catch (Poco::Exception &e) {
-		Poco::Util::Application::instance().logger().error("log monitor config ap_mac_regex error %s", std::string(e.what()));
-		return false;
-	}
-
-	try {
-		reMac = new Poco::RegularExpression(Poco::Util::Application::instance().config().getString("mac_regex"));
-	} catch (Poco::Exception &e) {
-		Poco::Util::Application::instance().logger().error("log monitor config mac_regex error %s", std::string(e.what()));
-		return false;
-	}
-
-	try {
-		address = new Poco::Net::SocketAddress(Poco::Util::Application::instance().config().getString("dest_ip"), Poco::Util::Application::instance().config().getUInt("dest_port"));
-	} catch (Poco::Exception &e) {
-		Poco::Util::Application::instance().logger().error("log monitor config regex error %s", std::string(e.what()));
-		return false;
-	}
-
-	if (fd != -1) {
-		if (wd != -1) {
-			inotify_rm_watch(fd, wd);
-			close(wd);
-			wd = -1;
-		}
-		close(fd);
-		fd = -1;
-	}
-
-	fd = inotify_init();
-
-	if (fd == -1) {
-		Poco::Util::Application::instance().logger().error("log monitor init fail -1");
-		return false;
-	}
-
-	Poco::Util::Application::instance().logger().information("log monitor init ok %d", fd);
-
-	stream_descriptor = new boost::asio::posix::stream_descriptor(ios, fd);
-
-	stream_descriptor->async_read_some(boost::asio::buffer(databuf, 128), boost::bind(&RuchusLogMonitor::handler, this));
 
 	std::string temp;
 	try {
 		temp = Poco::Util::Application::instance().config().getString("monitor_file");
 	} catch (Poco::Exception &e) {
 		Poco::Util::Application::instance().logger().error("log monitor get config error %s", std::string(e.what()));
-		close(fd);
-		fd = -1;
 		return false;
 	}
 
@@ -276,18 +291,10 @@ bool RuchusLogMonitor::initial() {
 
 	const char * p = temp.c_str();
 
-	if (wd != -1) {
-		inotify_rm_watch(fd, wd);
-		close(wd);
-		wd = -1;
-	}
-
 	wd = inotify_add_watch(fd, p, IN_ALL_EVENTS);
 
 	if (wd == -1) {
-		Poco::Util::Application::instance().logger().error("log monitor add watch fail -1");
-		close(fd);
-		fd = -1;
+		Poco::Util::Application::instance().logger().error("log monitor add watch fail %s", std::string(strerror(errno)));
 		return false;
 	}
 
@@ -298,8 +305,6 @@ bool RuchusLogMonitor::initial() {
 		begin_size = moniter_file->getSize();
 	} catch (Poco::Exception &e) {
 		Poco::Util::Application::instance().logger().error("log monitor error %s", std::string(e.what()));
-		close(fd);
-		fd = -1;
 		return false;
 	}
 
